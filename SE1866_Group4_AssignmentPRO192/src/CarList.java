@@ -2,7 +2,7 @@
 
 import java.util.*;
 import java.lang.*;
-public class CarList {
+public class CarList extends Car{
        BrandList brandList;
 public CarList(BrandList bList){
     
