@@ -3,7 +3,7 @@
 import java.util.*;
 import java.lang.*;
 public class BrandList extends Brand{
-    
+    ArrayList brand= new ArrayList();
     public BrandList(){
         
     }
@@ -26,6 +26,8 @@ public void updateBrand(){
     
 }
 public void listBrands(){
+    for ( int i=0; i<brand.size(); i++)
+        System.out.println(this.brand.get(i));
     
 }
 }

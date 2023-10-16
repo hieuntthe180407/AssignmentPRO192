@@ -4,6 +4,7 @@ import java.util.*;
 import java.lang.*;
 public class CarList extends Car{
        BrandList brandList;
+       ArrayList car = new ArrayList();
 public CarList(BrandList bList){
     
 }
@@ -45,7 +46,11 @@ public boolean updateCar(){
 }
 
 public void listCars(){
+    Collections.sort(car);
+   
     
+    for ( int i=0; i<car.size(); i++)
+        System.out.println(this.car.get(i));
 }
 
 }

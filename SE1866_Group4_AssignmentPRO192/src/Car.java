@@ -65,5 +65,13 @@ String engineID;
     public String toString() {
         return "Car{" + "carID=" + carID + ", brand=" + brand + ", color=" + color + ", frameID=" + frameID + ", engineID=" + engineID + '}';
     }
-
+    public int comparedTo(Car){
+        
+    }
+public String toString(){
+    
+}
+public String screenString(){
+    
+}
 }
