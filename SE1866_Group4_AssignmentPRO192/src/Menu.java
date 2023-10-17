@@ -3,8 +3,8 @@ import java.util.*;
 import java.lang.*;
 
 public class Menu {
-
-    public void menu() {
+   
+    public int int_getChoice() {
         Scanner sc = new Scanner(System.in);
         int choice = 0;
         do {
@@ -63,5 +63,11 @@ public class Menu {
             }
 
         } while (choice <= 11);
+        return choice;
     }
+    
+    public  ref_getChoice(List<Car> ){
+        
+    }
+
 }

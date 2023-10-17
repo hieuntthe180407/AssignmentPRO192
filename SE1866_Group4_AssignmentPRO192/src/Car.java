@@ -9,6 +9,10 @@ String color;
 String frameID;
 String engineID;
 
+    /**
+     *
+     */
+    private List<Car> cars;
     public Car() {
         
     }
@@ -65,13 +69,20 @@ String engineID;
     public String toString() {
         return "Car{" + "carID=" + carID + ", brand=" + brand + ", color=" + color + ", frameID=" + frameID + ", engineID=" + engineID + '}';
     }
-    public int comparedTo(Car){
-        
+    public int comparedTo(Car c){
+        int d = this.brand.brandName.compareTo(c.brand.brandName);
+        if (d!=0) return d;
+       return d;
+
     }
-public String toString(){
     
-}
+
 public String screenString(){
+    String result = "";
     
+    result = cars.stream().map((car) -> "<" + car.getBrand().getBrandName() + ", \"\\n\", " +
+            car.getCarID() + ", " + car.getColor() + ", " +
+            car.getFrameID() + ", " + car.getEngineID() + ">\n").reduce(result, String::concat);
+    return result;
 }
 }

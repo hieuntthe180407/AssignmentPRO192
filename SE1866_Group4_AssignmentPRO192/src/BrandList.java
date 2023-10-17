@@ -2,8 +2,8 @@
 
 import java.util.*;
 import java.lang.*;
-public class BrandList extends Brand{
-    ArrayList brand= new ArrayList();
+public class BrandList{
+    List<Brand> brands= new ArrayList();
     public BrandList(){
         
     }
@@ -26,8 +26,8 @@ public void updateBrand(){
     
 }
 public void listBrands(){
-    for ( int i=0; i<brand.size(); i++)
-        System.out.println(this.brand.get(i));
+    for ( int i=0; i<brands.size(); i++)
+        System.out.println(this.brands.get(i));
     
 }
 }
