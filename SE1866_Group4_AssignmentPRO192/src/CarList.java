@@ -42,7 +42,13 @@ public int searchFrame (String fID){
 }
 
 public int searchEngine (String eID){
-    
+    int N = this.size();
+    for (int i = 0; i < N; i++) {
+    if (this.get(i).getEngineID().equals(eID)) {
+        return i;
+        }
+    }
+    return -1;
 }
 
 public void addCar(){

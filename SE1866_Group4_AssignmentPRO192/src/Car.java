@@ -72,7 +72,7 @@ String engineID;
 
 public String screenString(){
     String result = "";
-    
+     for (Car carss : cars) 
     result = cars.stream().map((car) -> "<" + car.getBrand().getBrandName() + ", \"\\n\", " +
             car.getCarID() + ", " + car.getColor() + ", " +
             car.getFrameID() + ", " + car.getEngineID() + ">\n").reduce(result, String::concat);
