@@ -14,13 +14,7 @@ public boolean saveToFile(String){
     
 }
 public int searchID (String ID){
-    int N = this.size();
-    for (int i = 0; i < N; i++) {
-    if (this.get(i).getBrandID().equals(bID)) {
-        return i;
-        }
-    }
-    return -1;
+    
 }
 public Brand getUserChoice(){
     

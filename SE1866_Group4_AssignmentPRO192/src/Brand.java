@@ -52,5 +52,7 @@ double price;
         return "Brand{" + "brandID=" + brandID + ", brandName=" + brandName + ", soundBrand=" + soundBrand + ", price=" + price + '}';
     }
 
+    
+
 
 }

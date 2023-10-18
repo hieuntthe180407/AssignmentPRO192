@@ -2,17 +2,15 @@
 
 import java.util.*;
 import java.lang.*;
-public class Car {
+public class Car implements Comparable<Car>{
 String carID;
 Brand brand;
 String color;
 String frameID;
 String engineID;
 
-    /**
-     *
-     */
-    private List<Car> cars;
+   
+    List<Car> cars;
     public Car() {
         
     }
@@ -69,12 +67,7 @@ String engineID;
     public String toString() {
         return "Car{" + "carID=" + carID + ", brand=" + brand + ", color=" + color + ", frameID=" + frameID + ", engineID=" + engineID + '}';
     }
-    public int comparedTo(Car c){
-        int d = this.brand.brandName.compareTo(c.brand.brandName);
-        if (d!=0) return d;
-       return d;
-
-    }
+    
     
 
 public String screenString(){
@@ -85,4 +78,9 @@ public String screenString(){
             car.getFrameID() + ", " + car.getEngineID() + ">\n").reduce(result, String::concat);
     return result;
 }
+
+    @Override
+    public int compareTo(Car o) {
+        return this.brand.getBrandName().compareTo(o.brand.getBrandName());
+    }
 }
