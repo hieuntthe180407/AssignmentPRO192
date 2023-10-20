@@ -43,8 +43,9 @@ public class Menu {
                     
                     break;
                 case 5:
-                    
+                    brandList.saveToFile("brands.txt");
                     break;
+                    
                 case 6:
                     
                     break;
@@ -61,7 +62,8 @@ public class Menu {
                     
                     break;
                 case 11:
-                   
+                    brandList.saveToFile("cars.txt");
+                
                     break;
 
             }
