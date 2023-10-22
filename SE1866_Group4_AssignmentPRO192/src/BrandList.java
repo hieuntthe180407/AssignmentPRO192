@@ -1,5 +1,3 @@
-
-
 import java.util.*;
 import java.lang.*;
 public class BrandList{
@@ -11,8 +9,8 @@ public class BrandList{
     } else {
         System.out.println("Failed to load brands from the file.");
     }
-}
-    List<Brand> brands= new ArrayList();
+
+    List<Brand> list= new ArrayList();
     public BrandList(){
         
     }
@@ -81,8 +79,8 @@ public void updateBrand(){
     
 }
 public void listBrands(){
-    for ( int i=0; i<brands.size(); i++)
-        System.out.println(this.brands.get(i));
+    for ( int i=0; i<list.size(); i++)
+        System.out.println(this.list.get(i));
     
 }
 }

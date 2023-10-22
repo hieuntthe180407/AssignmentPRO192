@@ -1,6 +1,10 @@
 
 
 
+
+
+
+
 import java.util.*;
 import java.lang.*;
 public class CarList {
@@ -18,11 +22,14 @@ public class CarList {
     }
 }
        BrandList brandList;
-       List<Car>  cars;
+       List<Car>  list;
        Car c;
+
+    
+       
 public CarList(BrandList bList){
-        this.cars = new ArrayList<>();
-        
+        this.list = new ArrayList<>();
+        brandList = bList;
     
 }
 
@@ -127,13 +134,14 @@ public boolean updateCar(){
 }
 
 public void listCars(){
-        Collections.sort(cars);
+        Collections.sort(list);
     
-    for ( int i=0; i<cars.size(); i++){
-       c= cars.get(i);
+    for ( int i=0; i<list.size(); i++){
+       c= list.get(i);
         System.out.println(c.screenString());
 }
 }
 
     
 }
+
