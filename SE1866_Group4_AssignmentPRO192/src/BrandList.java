@@ -10,7 +10,7 @@ public class BrandList{
     } else {
         System.out.println("Failed to load brands from the file.");
     }
-
+     }
     List<Brand> list= new ArrayList();
     public BrandList(){
         
