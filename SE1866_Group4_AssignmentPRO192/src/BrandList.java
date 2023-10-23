@@ -54,7 +54,7 @@ public boolean loadFromFile(String filenamefilename){
 }
 
 
-public boolean saveToFile(String ){
+public boolean saveToFile(String filename ){
      try {
             FileWriter fileWriter = new FileWriter(filename);
             for (Brand brand : brands) {
