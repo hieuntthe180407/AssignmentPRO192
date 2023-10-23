@@ -19,7 +19,7 @@ public class BrandList{
     public BrandList(){
     }
      
-public boolean loadFromFile(String filenamefilename){
+public boolean loadFromFile(String filename){
      try {
         File file = new File(filename);
         if (!file.exists()) {
