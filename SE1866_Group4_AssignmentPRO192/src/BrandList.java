@@ -3,21 +3,10 @@ import java.lang.*;
 import java.io.*;
 import java.util.Scanner;
 public class BrandList{
-       List<Brand> brands = new ArrayList<>();
-     public static void main(String[] args) {
-    BrandList brandList = new BrandList();
-
-    if (brandList.loadFromFile("brands.txt")) {
-        System.out.println("List all brands");
-        brandList.listBrands();
-    } else {
-        System.out.println("Failed to load brands from the file.");
-    }
-     }
-    List<Brand> list= new ArrayList();
-     
-    public BrandList(){
-    }
+       private List<Brand> brands = new ArrayList<>();
+public BrandList() {
+}
+    
      
 public boolean loadFromFile(String filename){
      try {
@@ -30,7 +19,7 @@ public boolean loadFromFile(String filename){
         Scanner scanner = new Scanner(file);
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            // Split the line into parts (ID, brand name, sound brand, price)
+            
             String[] parts = line.split(", ");
             if (parts.length == 4) {
                 String brandID = parts[0];
