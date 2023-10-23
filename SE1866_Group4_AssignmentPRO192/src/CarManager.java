@@ -25,7 +25,8 @@ public class CarManager {
                case 8: list.(); break;
                case 9: list.(); break;
                case 10: list.(); break;
-               case 11: list.(); break;
+               case 11: list.saveToFile("cars.txt"); break;
+              
                case 12: list.(); break;
                
                
