@@ -3,6 +3,7 @@ import java.lang.*;
 import java.io.*;
 import java.util.Scanner;
 public class BrandList{
+       List<Brand> brands = new ArrayList<>();
      public static void main(String[] args) {
     BrandList brandList = new BrandList();
 
@@ -14,10 +15,11 @@ public class BrandList{
     }
      }
     List<Brand> list= new ArrayList();
+     
     public BrandList(){
-        
     }
-public boolean loadFromFile(String){
+     
+public boolean loadFromFile(String filenamefilename){
      try {
         File file = new File(filename);
         if (!file.exists()) {
@@ -50,7 +52,9 @@ public boolean loadFromFile(String){
             return false;
         }
 }
-public boolean saveToFile(String){
+
+
+public boolean saveToFile(String ){
      try {
             FileWriter fileWriter = new FileWriter(filename);
             for (Brand brand : brands) {
@@ -63,6 +67,11 @@ public boolean saveToFile(String){
             return false;
         }
 }
+
+     public int size() {
+        return brands.size();
+     }
+          
 public int searchID (String ID){
     int N = this.size();
     for (int i = 0; i < N; i++) {
@@ -85,5 +94,6 @@ public void listBrands(){
     for ( int i=0; i<list.size(); i++)
         System.out.println(this.list.get(i));
     
+}
 }
 }
