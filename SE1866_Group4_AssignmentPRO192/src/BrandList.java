@@ -1,6 +1,7 @@
 import java.util.*;
 import java.lang.*;
 public class BrandList{
+     public static void main(String[] args) {
     BrandList brandList = new BrandList();
 
     if (brandList.loadFromFile("brands.txt")) {
