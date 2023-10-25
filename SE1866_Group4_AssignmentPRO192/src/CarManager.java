@@ -11,22 +11,22 @@ public class CarManager {
      "List all cars in ascending order of brand names","List cars based on a part of an input brand name","Add a car","Remove a car","Update a car","Save car to file", "Quit"};
        int choice =0;
        CarList list = new CarList(bList);
+       BrandList listb = new BrandList();
        do{
-           System.out.println("\nStudent managing program");
+           
            choice = Menu.getChoice(options);
            switch(choice){
-               case 1: list.listCars(); break;
-               case 2: list.(); break;
-               case 3: list.(); break;
-               case 4: list.(); break;
-               case 5: list.saveToFile("brands.txt"); break;
-               case 6: list.(); break;
+               case 1: listb.listBrands();break;
+               case 2: listb.(); break;
+               case 3: listb.(); break;
+               case 4: listb.(); break;
+               case 5: listb.saveToFile("brands.txt"); break;
+               case 6: list.listCars();break;
                case 7: list.(); break;
                case 8: list.(); break;
                case 9: list.(); break;
                case 10: list.(); break;
-               case 11: list.saveToFile("cars.txt"); break;
-              
+               case 11: list.saveToFile("cars.txt");break;
                case 12: list.(); break;
                
                

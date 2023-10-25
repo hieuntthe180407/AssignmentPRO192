@@ -1,9 +1,9 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-import java.util.Scanner;
+
 public class BrandList{
-       private List<Brand> brands = new ArrayList<>();
+       private List<Brand> bList = new ArrayList<>();
 public BrandList() {
 }
     
@@ -30,7 +30,7 @@ public boolean loadFromFile(String filename){
                         String soundBrand = brandInfoParts[1];
                         double price = Double.parseDouble(parts[2]);
                         Brand brand = new Brand(brandID, brandName, soundBrand, price);
-                        brands.add(brand);
+                        bList.add(brand);
                     }
                 }
             }
@@ -46,7 +46,7 @@ public boolean loadFromFile(String filename){
 public boolean saveToFile(String filename ){
      try {
             FileWriter fileWriter = new FileWriter(filename);
-            for (Brand brand : brands) {
+            for (Brand brand : bList) {
                 fileWriter.write(brand.getBrandID() + ", " + brand.getBrandName() + " (" + brand.getSoundBrand() + "): " + brand.getPrice() + "\n");
             }
             fileWriter.close();
@@ -58,7 +58,7 @@ public boolean saveToFile(String filename ){
 }
 
      public int size() {
-        return brands.size();
+        return bList.size();
      }
           
 public int searchID (String ID){
@@ -80,9 +80,8 @@ public void updateBrand(){
     
 }
 public void listBrands(){
-    for ( int i=0; i<list.size(); i++)
-        System.out.println(this.list.get(i));
+    for ( int i=0; i<bList.size(); i++)
+        System.out.println(bList.get(i));
     
-}
 }
 }

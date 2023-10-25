@@ -22,13 +22,13 @@ public class CarList {
     }
 }
        BrandList brandList;
-       List<Car>  list;
+       List<Car>  cList;
        Car c;
 
     
        
 public CarList(BrandList bList){
-        this.list = new ArrayList<>();
+        this.cList = new ArrayList<>();
         brandList = bList;
     
 }
@@ -67,7 +67,7 @@ public boolean loadFromFile(String){
 public boolean saveToFile(String){
      try {
         PrintWriter writer = new PrintWriter(filename);
-        for (Car car : cars) {
+        for (Car car : cList) {
             String line = car.getCarID() + ", " + car.getBrand().getBrandID() + ", " +
                           car.getColor() + ", " + car.getFrameID() + ", " + car.getEngineID();
             writer.println(line);
@@ -134,10 +134,10 @@ public boolean updateCar(){
 }
 
 public void listCars(){
-        Collections.sort(list);
+        Collections.sort(cList);
     
-    for ( int i=0; i<list.size(); i++){
-       c= list.get(i);
+    for ( int i=0; i<cList.size(); i++){
+       c= cList.get(i);
         System.out.println(c.screenString());
 }
 }
