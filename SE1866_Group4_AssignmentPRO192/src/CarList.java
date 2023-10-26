@@ -7,6 +7,7 @@
 
 import java.util.*;
 import java.lang.*;
+import java.io.*;
 public class CarList {
        public static void main(String[] args) {
     BrandList brandList = new BrandList();
@@ -33,7 +34,7 @@ public CarList(BrandList bList){
     
 }
 
-public boolean loadFromFile(String){
+public boolean loadFromFile(String filename){
      File file = new File(filename);
     if (!file.exists()) {
         return false;
@@ -53,7 +54,7 @@ public boolean loadFromFile(String){
                 if (brandPos != -1) {
                     Brand brand = brandList.get(brandPos);
                     Car car = new Car(carID, brand, color, frameID, engineID);
-                    cars.add(car);
+                    cList.add(car);
                 }
             }
         }
@@ -64,7 +65,7 @@ public boolean loadFromFile(String){
     }
 }
 
-public boolean saveToFile(String){
+public boolean saveToFile(String filename){
      try {
         PrintWriter writer = new PrintWriter(filename);
         for (Car car : cList) {

@@ -10,7 +10,7 @@ String frameID;
 String engineID;
 
    
-    List<Car> cars;
+    List<Car> cList;
     public Car() {
         
     }
@@ -72,8 +72,8 @@ String engineID;
 
 public String screenString(){
     String result = "";
-     for (Car carss : cars) 
-    result = cars.stream().map((car) -> "<" + car.getBrand().getBrandName() + ", \"\\n\", " +
+     for (Car c : cList) 
+    result = cList.stream().map((car) -> "<" + car.getBrand().getBrandName() + ", \"\\n\", " +
             car.getCarID() + ", " + car.getColor() + ", " +
             car.getFrameID() + ", " + car.getEngineID() + ">\n").reduce(result, String::concat);
     return result;

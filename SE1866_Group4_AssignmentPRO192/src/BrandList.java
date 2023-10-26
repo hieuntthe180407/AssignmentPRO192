@@ -4,6 +4,7 @@ import java.io.*;
 
 public class BrandList{
        private List<Brand> bList = new ArrayList<>();
+       
 public BrandList() {
 }
     
@@ -80,8 +81,13 @@ public void updateBrand(){
     
 }
 public void listBrands(){
-    for ( int i=0; i<bList.size(); i++)
-        System.out.println(bList.get(i));
     
+        
+
+       for (Brand b : bList) {
+            System.out.println(b);
+        }
+           
+
 }
 }
