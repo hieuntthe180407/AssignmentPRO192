@@ -8,7 +8,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-public class CarList {
+public class CarList extends ArrayList<Car>{
        public static void main(String[] args) {
     BrandList brandList = new BrandList();
     CarList carList = new CarList(brandList);
@@ -135,12 +135,16 @@ public boolean updateCar(){
 }
 
 public void listCars(){
-        Collections.sort(cList);
+        
     
-    for ( int i=0; i<cList.size(); i++){
-       c= cList.get(i);
-        System.out.println(c.screenString());
-}
+    if (this.isEmpty()) System.out.println("Empty list!");
+        else{
+            Collections.sort(cList);
+            System.out.println("Car list:");
+            for (Car cr:this)System.out.println(cr);
+            System.out.println("Total: "+ this.size()+ " car(s).");
+        }
+
 }
 
     

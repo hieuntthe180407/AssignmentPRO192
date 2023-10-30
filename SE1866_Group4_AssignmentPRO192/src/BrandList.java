@@ -2,7 +2,7 @@ import java.util.*;
 import java.lang.*;
 import java.io.*;
 
-public class BrandList{
+public class BrandList extends ArrayList<Brand>{
        private List<Brand> bList = new ArrayList<>();
        
 public BrandList() {
@@ -82,12 +82,13 @@ public void updateBrand(){
 }
 public void listBrands(){
     
-        
-
-       for (Brand b : bList) {
-            System.out.println(b);
+       if (this.isEmpty()) System.out.println("Empty list!");
+        else{
+            System.out.println("Brand list:");
+            for (Brand br:this)System.out.println(br);
+            System.out.println("Total: "+ this.size()+ " brand(s).");
         }
-           
+      
 
 }
 }
