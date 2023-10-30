@@ -82,11 +82,24 @@ public void updateBrand(){
 }
 public void listBrands(){
     
-       if (this.isEmpty()) System.out.println("Empty list!");
+       if (this.isEmpty()) System.out.println("Empty list file!");
         else{
-            System.out.println("Brand list:");
-            for (Brand br:this)System.out.println(br);
-            System.out.println("Total: "+ this.size()+ " brand(s).");
+            try {
+            File f2 =new File("brands.txt");
+            FileReader fr = new FileReader(f2);
+            BufferedReader br = new BufferedReader(fr);
+            int lineNumber=1;
+            String line="";
+            while ((line =br.readLine())!= null){
+                System.out.println( lineNumber + ":" + line);
+                lineNumber++;
+            }
+            br.close();
+            fr.close();
+            System.out.println("End of File");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         }
       
 

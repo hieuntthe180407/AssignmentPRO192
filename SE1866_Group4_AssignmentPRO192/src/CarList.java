@@ -137,12 +137,24 @@ public boolean updateCar(){
 public void listCars(){
         
     
-    if (this.isEmpty()) System.out.println("Empty list!");
-        else{
-            Collections.sort(cList);
-            System.out.println("Car list:");
-            for (Car cr:this)System.out.println(cr);
-            System.out.println("Total: "+ this.size()+ " car(s).");
+    if (this.isEmpty()) System.out.println("Empty list file!");
+        else{ Collections.sort(cList);
+            try {
+            File f1 =new File("cars.txt");
+            FileReader fr = new FileReader(f1);
+            BufferedReader br = new BufferedReader(fr);
+            int lineNumber=1;
+            String line="";
+            while ((line =br.readLine())!= null){
+                System.out.println("Line "+ lineNumber + ":" + line);
+                lineNumber++;
+            }
+            br.close();
+            fr.close();
+            System.out.println("End of File");
+        } catch (Exception e) {
+            e.printStackTrace();
+        };
         }
 
 }
