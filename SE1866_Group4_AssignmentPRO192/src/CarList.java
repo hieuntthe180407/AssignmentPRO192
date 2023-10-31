@@ -22,6 +22,10 @@ public class CarList extends ArrayList<Car>{
         System.out.println("Failed to load cars from the file.");
     }
 }
+
+    public CarList() {
+        super();
+    }
        BrandList brandList;
        List<Car>  cList;
        Car c;
@@ -116,7 +120,20 @@ public void addCar(){
 }
 
 public void printBasedBrandName (){
-    
+      if (this.isEmpty()) System.out.println("Empty list!");
+          else{
+              String name = Inputter.getNonBlankStr("Searched car name: ");
+              name= Inputter.normalize(name).toUpperCase();
+              System.out.println(name);
+              int count=0;
+              for (Car c:this)
+                  if (c.brand.brandName.toUpperCase().indexOf(name)>=0){
+                      System.out.println(c);
+                      count++;
+                  }
+              if (count>0) System.out.println("FOund: "+ count + "car(s)");
+              if (count == 0)
+                  System.out.println("Not found");          }
 }
 
 public boolean removeCar(){
@@ -137,23 +154,12 @@ public boolean updateCar(){
 public void listCars(){
         
     
-    Collections.sort(cList);
-            try {
-            File f1 =new File("cars.txt");
-            FileReader fr = new FileReader(f1);
-            BufferedReader br = new BufferedReader(fr);
-            int lineNumber=1;
-            String line="";
-            while ((line =br.readLine())!= null){
-                System.out.println( lineNumber + ":" + line);
-                lineNumber++;
-            }
-            br.close();
-            fr.close();
-            System.out.println("End of File");
-        } catch (Exception e) {
-            e.printStackTrace();
-        };
+    if (this.isEmpty()) System.out.println("Empty list!");
+          else{
+              Collections.sort(this);
+              System.out.println("\nCar list:");
+              for (Car c:this) System.out.println(c);
+          }
         
 
 }

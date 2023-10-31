@@ -79,8 +79,13 @@ public String screenString(){
     return result;
 }
 
+   
+   
+
     @Override
-    public int compareTo(Car o) {
-        return this.brand.getBrandName().compareTo(o.brand.getBrandName());
+    public int compareTo(Car c) {
+        int d= this.brand.brandName.compareTo(c.brand.brandName);
+        if (d!=0) return d;
+        return this.carID.compareTo(c.carID); 
     }
 }

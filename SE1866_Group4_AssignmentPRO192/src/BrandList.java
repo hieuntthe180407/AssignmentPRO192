@@ -6,6 +6,7 @@ public class BrandList extends ArrayList<Brand>{
        private List<Brand> bList = new ArrayList<>();
        
 public BrandList() {
+    super();
 }
     
      
@@ -83,23 +84,12 @@ public void updateBrand(){
 public void listBrands(){
     
        
-       
-            try {
-            File f2 =new File("brands.txt");
-            FileReader fr = new FileReader(f2);
-            BufferedReader br = new BufferedReader(fr);
-            int lineNumber=1;
-            String line="";
-            while ((line =br.readLine())!= null){
-                System.out.println( lineNumber + ":" + line);
-                lineNumber++;
-            }
-            br.close();
-            fr.close();
-            System.out.println("End of File");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        if (this.isEmpty()) System.out.println("Empty list!");
+          else{
+              
+              System.out.println("\nBrand list:");
+              for (Brand b:this) System.out.println(b);
+          }
         
       
 
