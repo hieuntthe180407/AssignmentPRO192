@@ -82,8 +82,8 @@ public void updateBrand(){
 }
 public void listBrands(){
     
-       if (this.isEmpty()) System.out.println("Empty list file!");
-        else{
+       
+       
             try {
             File f2 =new File("brands.txt");
             FileReader fr = new FileReader(f2);
@@ -100,7 +100,7 @@ public void listBrands(){
         } catch (Exception e) {
             e.printStackTrace();
         }
-        }
+        
       
 
 }

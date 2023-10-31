@@ -137,8 +137,7 @@ public boolean updateCar(){
 public void listCars(){
         
     
-    if (this.isEmpty()) System.out.println("Empty list file!");
-        else{ Collections.sort(cList);
+    Collections.sort(cList);
             try {
             File f1 =new File("cars.txt");
             FileReader fr = new FileReader(f1);
@@ -146,7 +145,7 @@ public void listCars(){
             int lineNumber=1;
             String line="";
             while ((line =br.readLine())!= null){
-                System.out.println("Line "+ lineNumber + ":" + line);
+                System.out.println( lineNumber + ":" + line);
                 lineNumber++;
             }
             br.close();
@@ -155,7 +154,7 @@ public void listCars(){
         } catch (Exception e) {
             e.printStackTrace();
         };
-        }
+        
 
 }
 
