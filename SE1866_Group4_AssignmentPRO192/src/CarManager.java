@@ -9,10 +9,14 @@ public class CarManager {
     public static void main(String[] args) {
      String[] options= {"List all brands","Add a new brand", "Search a brand based on its ID","Update a brand", "Save brands to the file",
      "List all cars in ascending order of brand names","List cars based on a part of an input brand name","Add a car","Remove a car","Update a car","Save car to file", "Quit"};
-       int choice =0;
-       CarList list = new CarList();
+      Scanner sc = new Scanner(System.in);
+        BrandList brandList = new BrandList();
+        brandList.loadFromFile("brands.txt");
+        CarList carList = new CarList(brandList);
+        carList.loadFromFile("cars.txt");
        
-       BrandList listb = new BrandList();
+       int choice =0;
+ 
        do{
            
            choice = Menu.getChoice(options);
