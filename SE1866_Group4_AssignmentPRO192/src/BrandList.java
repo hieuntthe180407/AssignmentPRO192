@@ -45,23 +45,19 @@ public boolean loadFromFile(String filename){
 }
 
 
-public boolean saveToFile(String filename ){
-     try {
-            FileWriter fileWriter = new FileWriter(filename);
+public boolean saveToFile(String filename) {
+        try (FileWriter fw = new FileWriter(filename);
+             PrintWriter pw = new PrintWriter(fw)) {
             for (Brand brand : bList) {
-                fileWriter.write(brand.getBrandID() + ", " + brand.getBrandName() + " (" + brand.getSoundBrand() + "): " + brand.getPrice() + "\n");
+                String line = brand.getBrandID() + ", " + brand.getBrandName() + ": " + brand.getSoundBrand() + ": " + brand.getPrice();
+                pw.println(line);
             }
-            fileWriter.close();
             return true;
         } catch (IOException e) {
             e.printStackTrace();
             return false;
         }
-}
-
-     public int size() {
-        return bList.size();
-     }
+    }
           
 public int searchID (String ID){
     int N = this.size();
