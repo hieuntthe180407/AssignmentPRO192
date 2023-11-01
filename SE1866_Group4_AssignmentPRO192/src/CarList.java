@@ -8,35 +8,14 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-public class CarList extends ArrayList<Car>{
-       public static void main(String[] args) {
-    BrandList brandList = new BrandList();
-    CarList carList = new CarList(brandList);
-    
-    // Load cars from the file
-    if (carList.loadFromFile("cars.txt")) {
-        // List all cars
-        System.out.println("List all cars");
-        carList.listCars();
-    } else {
-        System.out.println("Failed to load cars from the file.");
-    }
-}
+public class CarList extends ArrayList<Car> {
+    private BrandList brandList;
 
-    public CarList() {
-        super();
-    }
-       BrandList brandList;
-       List<Car>  cList;
-       Car c;
+    public CarList(BrandList brandList) {
+        this.brandList = brandList;
 
-    
-       
-public CarList(BrandList bList){
-        this.cList = new ArrayList<>();
-        brandList = bList;
-    
 }
+   
 
 public boolean loadFromFile(String filename){
      File file = new File(filename);
