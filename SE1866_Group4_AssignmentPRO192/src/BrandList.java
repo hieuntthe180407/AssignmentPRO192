@@ -3,7 +3,7 @@ import java.lang.*;
 import java.io.*;
 
 public class BrandList extends ArrayList<Brand>{
-       private List<Brand> bList = new ArrayList<>();
+       private List<Brand> brandList = new ArrayList<>();
        
 public BrandList() {
     super();
@@ -32,7 +32,7 @@ public boolean loadFromFile(String filename){
                         String soundBrand = brandInfoParts[1];
                         double price = Double.parseDouble(parts[2]);
                         Brand brand = new Brand(brandID, brandName, soundBrand, price);
-                        bList.add(brand);
+                        brandList.add(brand);
                     }
                 }
             }
@@ -48,7 +48,7 @@ public boolean loadFromFile(String filename){
 public boolean saveToFile(String filename) {
         try (FileWriter fw = new FileWriter(filename);
              PrintWriter pw = new PrintWriter(fw)) {
-            for (Brand brand : bList) {
+            for (Brand brand : brandList) {
                 String line = brand.getBrandID() + ", " + brand.getBrandName() + ": " + brand.getSoundBrand() + ": " + brand.getPrice();
                 pw.println(line);
             }

@@ -1,16 +1,9 @@
-
-
-
-
-
-
-
 import java.util.*;
 import java.lang.*;
 import java.io.*;
 public class CarList extends ArrayList<Car> {
     private BrandList brandList;
-
+    List<Car> carList;
     public CarList(BrandList brandList) {
         this.brandList = brandList;
 
@@ -37,7 +30,7 @@ public boolean loadFromFile(String filename){
                 if (brandPos != -1) {
                     Brand brand = brandList.get(brandPos);
                     Car car = new Car(carID, brand, color, frameID, engineID);
-                    cList.add(car);
+                    carList.add(car);
                 }
             }
         }
@@ -51,7 +44,7 @@ public boolean loadFromFile(String filename){
 public boolean saveToFile(String filename){
      try {
         PrintWriter writer = new PrintWriter(filename);
-        for (Car car : cList) {
+        for (Car car : carList) {
             String line = car.getCarID() + ", " + car.getBrand().getBrandID() + ", " +
                           car.getColor() + ", " + car.getFrameID() + ", " + car.getEngineID();
             writer.println(line);
@@ -145,4 +138,3 @@ public void listCars(){
 
     
 }
-
