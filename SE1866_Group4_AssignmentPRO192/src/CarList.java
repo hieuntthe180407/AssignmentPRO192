@@ -41,21 +41,18 @@ public boolean loadFromFile(String filename){
     }
 }
 
-public boolean saveToFile(String filename){
-     try {
-        PrintWriter writer = new PrintWriter(filename);
-        for (Car car : carList) {
-            String line = car.getCarID() + ", " + car.getBrand().getBrandID() + ", " +
-                          car.getColor() + ", " + car.getFrameID() + ", " + car.getEngineID();
-            writer.println(line);
+ public boolean saveToFile(String filename) {
+        try (FileWriter fw = new FileWriter(filename);
+             PrintWriter pw = new PrintWriter(fw)) {
+            for (Car car : this) pw.println(car);
+               pw.close();
+               fw.close();
+           
+        } catch (Exception e) {
+               System.out.println(e);
         }
-        writer.close();
-        return true;
-    } catch (IOException e) {
-        e.printStackTrace();
-        return false;
+         return true;
     }
-}
 
 public int searchID (String ID){
     int N = this.size(); 
