@@ -10,7 +10,7 @@ String frameID;
 String engineID;
 
    
-    List<Car> carList;
+ 
     public Car() {
         
     }
@@ -65,19 +65,12 @@ String engineID;
 
     @Override
     public String toString() {
-        return "Car{" + "carID=" + carID + ", brand=" + brand + ", color=" + color + ", frameID=" + frameID + ", engineID=" + engineID + '}';
+        return carID + ", " + brand + ", " + color + ", " + frameID + ", " + engineID ;
     }
     
     
 
-public String screenString(){
-    String result = "";
-     for (Car c : carList) 
-    result = carList.stream().map((car) -> "<" + car.getBrand().getBrandName() + ", \"\\n\", " +
-            car.getCarID() + ", " + car.getColor() + ", " +
-            car.getFrameID() + ", " + car.getEngineID() + ">\n").reduce(result, String::concat);
-    return result;
-}
+
 
    
    

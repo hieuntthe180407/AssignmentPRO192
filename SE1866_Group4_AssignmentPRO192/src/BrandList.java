@@ -3,7 +3,7 @@ import java.lang.*;
 import java.io.*;
 
 public class BrandList extends ArrayList<Brand>{
-       private List<Brand> brandList = new ArrayList<>();
+       
        
 public BrandList() {
     super();
@@ -54,9 +54,7 @@ public boolean saveToFile(String filename) {
         return true;
     }
 
-     public int size() {
-        return this.size();
-     }
+    
       
           
 public int searchID (String ID){

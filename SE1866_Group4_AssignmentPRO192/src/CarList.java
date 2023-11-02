@@ -3,9 +3,14 @@ import java.lang.*;
 import java.io.*;
 public class CarList extends ArrayList<Car> {
     private BrandList brandList;
-    List<Car> carList;
+
+    public CarList() {
+        super ();
+    }
+    
     public CarList(BrandList brandList) {
         this.brandList = brandList;
+        
 
 }
    
@@ -30,7 +35,7 @@ public boolean loadFromFile(String filename){
                 if (brandPos != -1) {
                     Brand brand = brandList.get(brandPos);
                     Car car = new Car(carID, brand, color, frameID, engineID);
-                    carList.add(car);
+                    this.add(car);
                 }
             }
         }
@@ -133,5 +138,12 @@ public void listCars(){
 
 }
 
-    
+    public String screenString(){
+    String result = "";
+     for (Car c : this) 
+    result = this.stream().map((car) -> "<" + car.getBrand().getBrandName() + ", \"\\n\", " +
+            car.getCarID() + ", " + car.getColor() + ", " +
+            car.getFrameID() + ", " + car.getEngineID() + ">\n").reduce(result, String::concat);
+    return result;
+}
 }

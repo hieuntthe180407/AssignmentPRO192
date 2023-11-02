@@ -49,7 +49,7 @@ double price;
 
     @Override
     public String toString() {
-        return "Brand{" + "brandID=" + brandID + ", brandName=" + brandName + ", soundBrand=" + soundBrand + ", price=" + price + '}';
+        return  brandID + ", " + brandName + ", " + soundBrand + ": " + price ;
     }
 
     
