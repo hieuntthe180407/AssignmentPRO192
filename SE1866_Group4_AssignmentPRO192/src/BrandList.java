@@ -11,53 +11,53 @@ public BrandList() {
     
      
 public boolean loadFromFile(String filename){
-     try {
+     
         File file = new File(filename);
         if (!file.exists()) {
-            System.out.println("File not found.");
+            
             return false;
         }
-
-        Scanner scanner = new Scanner(file);
+        try (Scanner scanner = new Scanner(file)){
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             
             String[] parts = line.split(", ");
             if (parts.length == 4) {
-                String brandID = parts[0];
-                    String brandInfo = parts[1];
-                    String[] brandInfoParts = brandInfo.split(": ");
-                    if (brandInfoParts.length == 2) {
-                        String brandName = brandInfoParts[0];
-                        String soundBrand = brandInfoParts[1];
-                        double price = Double.parseDouble(parts[2]);
-                        Brand brand = new Brand(brandID, brandName, soundBrand, price);
-                        brandList.add(brand);
-                    }
+                   String brandID = parts[0];
+                    String brandName = parts[1];
+                    String soundBrand = parts[2];
+                    double price = Double.parseDouble(parts[3]);
+
+                    Brand brand = new Brand(brandID, brandName, soundBrand, price);
+                    this.add(brand);
                 }
             }
-            scanner.close();
-            return true;
+              return true;
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             return false;
         }
-}
+    }
 
 
 public boolean saveToFile(String filename) {
-        try (FileWriter fw = new FileWriter(filename);
-             PrintWriter pw = new PrintWriter(fw)) {
-            for (Brand brand : brandList) {
-                String line = brand.getBrandID() + ", " + brand.getBrandName() + ": " + brand.getSoundBrand() + ": " + brand.getPrice();
-                pw.println(line);
+        try {
+            FileWriter fw = new FileWriter(filename); 
+            PrintWriter pw= new PrintWriter(fw);
+            for (Brand brand : this)pw.println(brand); 
+                 pw.close();
+                 fw.close();
             }
-            return true;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return false;
+            catch (Exception e) {
+               System.out.println(e);
         }
+        return true;
     }
+
+     public int size() {
+        return this.size();
+     }
+      
           
 public int searchID (String ID){
     int N = this.size();
