@@ -2,28 +2,24 @@
 import java.util.*;
 import java.lang.*;
 
-public class Menu {
-   
+
+   public class Menu {
+  
 
     public Menu() {
+        
     }
+
    
-    public int int_getChoice(ArrayList options) {
-        for (int i=0; i<options.size(); i++){
-            System.out.println((i+1) + "-" + options.get(i));
-        }
-        System.out.println("Choose 1.." + options.size() + ":");
-        Scanner sc = new Scanner (System.in);
-        return Integer.parseInt(sc.nextLine());
-    }
-    
-     public static int getChoice(Object[]options){
-        for (int i=0; i<options.length; i++){
-            System.out.println((i+1)+"-"+options[i]);
-        }
-        System.out.println("Choose 1.." + options.length +": ");
+
+    public static int getChoice (String[] ops){
         Scanner sc = new Scanner(System.in);
+        for (int i=0; i<ops.length; i++){
+            System.out.println("\n" + (i+1) + "-" +ops[i]);
+        }
+        System.out.println("\n Choose 1.." + ops.length + ": ");
         return Integer.parseInt(sc.nextLine());
     }
 
+    
 }

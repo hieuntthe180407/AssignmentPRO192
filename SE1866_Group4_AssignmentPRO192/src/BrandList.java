@@ -11,40 +11,41 @@ public BrandList() {
     
      
 public boolean loadFromFile(String filename){
-     
-        File file = new File(filename);
-        if (!file.exists()) {
-            
-            return false;
-        }
-        try (Scanner scanner = new Scanner(file)){
-        while (scanner.hasNextLine()) {
-            String line = scanner.nextLine();
-            
-            String[] parts = line.split(", ");
-            if (parts.length == 4) {
-                   String brandID = parts[0];
-                    String brandName = parts[1];
-                    String soundBrand = parts[2];
-                    double price = Double.parseDouble(parts[3]);
-
-                    Brand brand = new Brand(brandID, brandName, soundBrand, price);
-                    this.add(brand);
-                }
-            }
-              return true;
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
+        
+        File f = new File(filename);
+           if (!f.exists()) return false;
+           try {
+               FileReader fr = new FileReader(f);
+               BufferedReader bf = new BufferedReader(fr);
+               String line;
+               while ((line= bf.readLine())!= null){
+                   line =line.trim();
+                   if (line.length()>0){
+                        StringTokenizer stk = new StringTokenizer (line, ",");
+                        String brandID = stk.nextToken().trim();
+                        String brandName = stk.nextToken().trim();
+                         String soundBrand = stk.nextToken().trim();
+                        double price = Double.parseDouble(stk.nextToken().trim());
+                        Brand b = new Brand(brandID, brandName, soundBrand, price);
+                        this.add(b);
+                   }  
+               }
+               bf.close();
+               fr.close();
+           } 
+           catch (Exception e) {System.out.println(e);
+                   
+                   }
+           return true;
+       }
+       
 
 
 public boolean saveToFile(String filename) {
         try {
             FileWriter fw = new FileWriter(filename); 
             PrintWriter pw= new PrintWriter(fw);
-            for (Brand brand : this)pw.println(brand); 
+            for (Brand b : this)pw.println(b); 
                  pw.close();
                  fw.close();
             }
@@ -55,15 +56,22 @@ public boolean saveToFile(String filename) {
     }
 
     
-      
+      public Brand search(String brandID){
+          brandID = Inputter.normalize(brandID).toUpperCase();
+          for (Brand b:this)
+               if (b.brandID.equals(brandID)) return b;
+          return null;
+      }
           
-public int searchID(String bID) {
-       for (int i = 0; i < brandList.size(); i++) {
-            if (brandList.get(i).getBrandID().equals(bID)) {
-                return i;
-            }
-       }
-       return -1;
+public void searchID() {
+        if (this.isEmpty()) System.out.println("Empty list!");
+         else{
+             String brandID = Inputter.getNonBlankStr("brandID of searched brand: ");
+             Brand b= search(brandID);
+             if (b==null) System.out.println("Not found");
+             else System.out.println("Found: " + b);
+         }
+        
 }
 
 
@@ -71,8 +79,24 @@ public Brand getUserChoice(){
     
 }
 public void addBrand(){
+    String ID = null, brandName, soundBrand;
+        double price;
+        boolean duplicated = false;
+        do{
+            duplicated = (search(ID) != null);
+            if(duplicated) System.out.println("ID is duplicated");
+        } while(duplicated);
+        brandName = Inputter.getNonBlankStr("Input brand name: ");
+        soundBrand = Inputter.getNonBlankStr("Input sound brand: ");
+        price = Inputter.getIntGreater("Input product price: ", 0);
+        Brand newB = new Brand(ID, brandName, soundBrand, price);
+        this.add(newB);
+        System.out.println("Added");
+    }
     
-}
+
+
+
 public void updateBrand(){
     
 }

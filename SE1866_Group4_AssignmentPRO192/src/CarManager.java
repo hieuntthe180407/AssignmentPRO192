@@ -12,33 +12,27 @@ public class CarManager {
        int choice =0;
         Scanner sc = new Scanner(System.in);
         BrandList brandList = new BrandList();
-        brandList.loadFromFile("brands.txt");
+        brandList.loadFromFile("Brands.txt");
         CarList carList = new CarList(brandList);
-        carList.loadFromFile("cars.txt");
+        carList.loadFromFile("Cars.txt");
+         boolean changed =false;
        do{
            
            choice = Menu.getChoice(options);
            switch(choice){
                case 1: brandList.listBrands();break;
-               case 2: brandList.(); break;
+               case 2: brandList.();break;
                case 3: 
-                 System.out.print("Enter brand ID to search: ");
-                    String brandID = scanner.next();
-                    int brandPos = brandList.searchID(brandID);
-                    if (brandPos != -1) {
-                        System.out.println("Brand found: " + brandList.getUserChoice());
-                    } else {
-                        System.out.println("Brand not found.");
-                    }
+                brandList.searchID();
                     break;
                case 4: brandList.(); break;
-               case 5: brandList.saveToFile("brands.txt"); break;
+               case 5: brandList.saveToFile("brands.txt");changed= false; break;
                case 6:carList.listCars();break;
                case 7: carList.printBasedBrandName();break;
                case 8: carList.(); break;
                case 9: 
                  System.out.print("Enter car ID to remove: ");
-                    String carID = scanner.next();
+                    String carID = sc.next();
                     if (carList.removeCar(carID)) {
                         System.out.println("Car removed successfully.");
                     }
@@ -56,4 +50,3 @@ public class CarManager {
         
     }
     
-

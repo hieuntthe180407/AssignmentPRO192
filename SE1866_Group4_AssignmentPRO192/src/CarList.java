@@ -16,34 +16,35 @@ public class CarList extends ArrayList<Car> {
    
 
 public boolean loadFromFile(String filename){
-     File file = new File(filename);
-    if (!file.exists()) {
-        return false;
-    }
-
-    try (Scanner scanner = new Scanner(file)) {
-        while (scanner.hasNextLine()) {
-            String line = scanner.nextLine();
-            String[] parts = line.split(", ");
-            if (parts.length == 5) {
-                String carID = parts[0];
-                String brandID = parts[1];
-                String color = parts[2];
-                String frameID = parts[3];
-                String engineID = parts[4];
-                int brandPos = brandList.searchID(brandID);
-                if (brandPos != -1) {
-                    Brand brand = brandList.get(brandPos);
-                    Car car = new Car(carID, brand, color, frameID, engineID);
-                    this.add(car);
-                }
-            }
-        }
-        return true;
-    } catch (FileNotFoundException e) {
-        e.printStackTrace();
-        return false;
-    }
+      File f = new File(filename);
+           if (!f.exists()) return false;
+           try {
+               FileReader fr = new FileReader(f);
+               BufferedReader bf = new BufferedReader(fr);
+               String line;
+               while ((line= bf.readLine())!= null){
+                   line =line.trim();
+                   if (line.length()>0){
+                        StringTokenizer stk = new StringTokenizer (line, ",");
+                        String carID = stk.nextToken().trim();
+                        
+                        String color = stk.nextToken().trim();
+                        String frameID = stk.nextToken().trim();
+                        String engineID = stk.nextToken().trim();
+                       
+                        Brand brand = brandList.get(modCount);
+                        
+                        Car c = new Car (carID, brand, color, frameID, engineID);
+                        this.add(c);
+                   }  
+               }
+               bf.close();
+               fr.close();
+           } 
+           catch (Exception e) {System.out.println(e);
+                   
+                   }
+           return true;
 }
 
  public boolean saveToFile(String filename) {
@@ -60,8 +61,8 @@ public boolean loadFromFile(String filename){
     }
 
 public int searchID(String carID) {
-    for (int i = 0; i < carList.size(); i++) {
-        if (carList.get(i).getCarID().equals(carID)) {
+    for (int i = 0; i < this.size(); i++) {
+        if (this.get(i).getCarID().equals(carID)) {
             return i;
         }
     }
@@ -69,8 +70,8 @@ public int searchID(String carID) {
 }
 
 public int searchFrame(String frameID) {
-    for (int i = 0; i < carList.size(); i++) {
-        if (carList.get(i).getFrameID().equals(frameID)) {
+    for (int i = 0; i < this.size(); i++) {
+        if (this.get(i).getFrameID().equals(frameID)) {
             return i;
         }
     }
@@ -78,8 +79,8 @@ public int searchFrame(String frameID) {
 }
 
 public int searchEngine(String engineID) {
-    for (int i = 0; i < carList.size(); i++) {
-        if (carList.get(i).getEngineID().equals(engineID)) {
+    for (int i = 0; i < this.size(); i++) {
+        if (this.get(i).getEngineID().equals(engineID)) {
             return i;
         }
     }
@@ -87,8 +88,42 @@ public int searchEngine(String engineID) {
 }
 
 public void addCar(){
+    String carID = "Input carID: ", color, frameID, engineID;
+        Brand br = (Brand)Menu.ref_getChoice(brandList);
+        boolean duplicated;
+        boolean duplicated1;
+        boolean duplicated2;
+        String msg1 = "Input frameID F0000: ";
+        String msg2 = "Input engineID E0000: ";
+        String regEx1 = "F\\d{4}";
+        String regEx2 = "E\\d{4}";
+        do{
+            duplicated = (searchcarID(carID) != null);
+            if(duplicated) System.out.println("carID is duplicated");
+        }while(duplicated);
+        do{
+            frameID = Inputter.getPatternStr(msg1, regEx1);
+            duplicated1 = (searchFrame(frameID) != null);
+            if(duplicated1&&!frameID.matches("F\\d{4}")) System.out.println("frameID is duplicated");
+        }while(duplicated1);
+        do{
+            engineID = Inputter.getPatternStr(msg2, regEx2);            
+            duplicated2 = (searchEngine(engineID) != null);           
+            if(duplicated2&&!engineID.matches("E\\d{4}")) System.out.println("engineID is duplicated");
+        }while(duplicated2);
+        color = Inputter.getNonBlankStr("Input color: ");
+        Car newC = new Car(carID, br, color, frameID, engineID);
+        this.add(newC);
+        System.out.println("Added");
+    }
+
     
-}
+
+    private Object searchcarID(String carID) {
+        return carID;
+    }
+
+   
 
 public void printBasedBrandName (){
       if (this.isEmpty()) System.out.println("Empty list!");
@@ -113,7 +148,7 @@ public boolean removeCar(String removedID) {
         System.out.println("Not found!");
         return false;
     } else {
-        carList.remove(pos);
+        this.remove(pos);
         return true;
     }
 }
@@ -127,7 +162,7 @@ public void listCars(){
     
     if (this.isEmpty()) System.out.println("Empty list!");
           else{
-              Collections.sort(this);
+              Collections.sort(this, Car.comparator1);
               System.out.println("\nCar list:");
               for (Car c:this) System.out.println(c);
           }

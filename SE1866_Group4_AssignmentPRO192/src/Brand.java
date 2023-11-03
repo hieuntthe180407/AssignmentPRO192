@@ -1,4 +1,3 @@
-
 import java.util.*;
 import java.lang.*;
 public class Brand {
@@ -49,7 +48,7 @@ double price;
 
     @Override
     public String toString() {
-        return  brandID + ", " + brandName + ", " + soundBrand + ": " + price ;
+        return  brandID + ", " + brandName + ", " + soundBrand + ", " + price ;
     }
 
     

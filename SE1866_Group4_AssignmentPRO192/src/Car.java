@@ -23,6 +23,18 @@ String engineID;
         this.engineID = engineID;
     }
 
+  public static Comparator comparator1 = new Comparator() {
+            @Override
+            public int compare(Object o1, Object o2) {
+                Car p1 = (Car)o1;
+                Car p2 = (Car)o2;
+               return p1.brand.brandID.compareTo(p2.brand.brandID);
+            } 
+
+  };
+
+    
+
     public String getCarID() {
         return carID;
     }
@@ -65,7 +77,7 @@ String engineID;
 
     @Override
     public String toString() {
-        return carID + ", " + brand + ", " + color + ", " + frameID + ", " + engineID ;
+        return carID + ", " + brand.brandID + ", " + color + ", " + frameID + ", " + engineID ;
     }
     
     
