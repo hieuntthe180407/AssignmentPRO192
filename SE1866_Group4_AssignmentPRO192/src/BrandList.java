@@ -57,15 +57,16 @@ public boolean saveToFile(String filename) {
     
       
           
-public int searchID (String ID){
-    int N = this.size();
-    for (int i = 0; i < N; i++) {
-    if (this.get(i).getBrandID().equals(bID)) {
-        return i;
-        }
-    }
-    return -1;
+public int searchID(String bID) {
+       for (int i = 0; i < brandList.size(); i++) {
+            if (brandList.get(i).getBrandID().equals(bID)) {
+                return i;
+            }
+       }
+       return -1;
 }
+
+
 public Brand getUserChoice(){
     
 }
