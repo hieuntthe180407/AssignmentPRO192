@@ -21,13 +21,28 @@ public class CarManager {
            switch(choice){
                case 1: brandList.listBrands();break;
                case 2: brandList.(); break;
-               case 3: brandList.(); break;
+               case 3: 
+                 System.out.print("Enter brand ID to search: ");
+                    String brandID = scanner.next();
+                    int brandPos = brandList.searchID(brandID);
+                    if (brandPos != -1) {
+                        System.out.println("Brand found: " + brandList.getUserChoice());
+                    } else {
+                        System.out.println("Brand not found.");
+                    }
+                    break;
                case 4: brandList.(); break;
                case 5: brandList.saveToFile("brands.txt"); break;
                case 6:carList.listCars();break;
                case 7: carList.printBasedBrandName();break;
                case 8: carList.(); break;
-               case 9: carList.(); break;
+               case 9: 
+                 System.out.print("Enter car ID to remove: ");
+                    String carID = scanner.next();
+                    if (carList.removeCar(carID)) {
+                        System.out.println("Car removed successfully.");
+                    }
+                    break;
                case 10: carList.(); break;
                case 11:carList.saveToFile("cars.txt");break;
                case 12: break;
