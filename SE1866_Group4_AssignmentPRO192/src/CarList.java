@@ -59,31 +59,28 @@ public boolean loadFromFile(String filename){
          return true;
     }
 
-public int searchID (String ID){
-    int N = this.size(); 
-       for (int i = 0; i < N; i++) {
-              if (this.get(i).carID.equals(carID)) {
-        return i;
-        }
-    }
-    return -1;
-}
-
-public int searchFrame (String fID){
-    int N = this.size();
-    for (int i = 0; i < N; i++) {
-       if (this.get(i).getFrameID().equals(fID)) {
+public int searchID(String carID) {
+    for (int i = 0; i < carList.size(); i++) {
+        if (carList.get(i).getCarID().equals(carID)) {
             return i;
         }
     }
     return -1;
 }
 
-public int searchEngine (String eID){
-    int N = this.size();
-    for (int i = 0; i < N; i++) {
-    if (this.get(i).getEngineID().equals(eID)) {
-        return i;
+public int searchFrame(String frameID) {
+    for (int i = 0; i < carList.size(); i++) {
+        if (carList.get(i).getFrameID().equals(frameID)) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+public int searchEngine(String engineID) {
+    for (int i = 0; i < carList.size(); i++) {
+        if (carList.get(i).getEngineID().equals(engineID)) {
+            return i;
         }
     }
     return -1;
@@ -110,13 +107,13 @@ public void printBasedBrandName (){
                   System.out.println("Not found");          }
 }
 
-public boolean removeCar(){
+public boolean removeCar(String removedID) {
     int pos = searchID(removedID);
     if (pos < 0) {
         System.out.println("Not found!");
         return false;
     } else {
-        this.remove(pos);
+        carList.remove(pos);
         return true;
     }
 }
