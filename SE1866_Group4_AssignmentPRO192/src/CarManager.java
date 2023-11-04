@@ -7,6 +7,7 @@ public class CarManager {
 
     
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
       ArrayList<String> ops = new ArrayList<>();
         ops.add("1. List all brands");
         ops.add("2. Add a new brand");
@@ -57,8 +58,8 @@ public class CarManager {
                     brandList.updateBrand();;
                     break;
                 case 5:
-                    brandList.saveToFile("brands.txt");
-                   
+                    brandList.saveToFile("Brands.txt");
+                    System.out.println("Brands are saved succesfully!");
                     break;
                 case 6:
                     carList.listCars();
@@ -70,17 +71,20 @@ public class CarManager {
                     addCar(carList, brandList);
                     break;
                 case 9:
-                    carList.removeCar(removedID);
+                    System.out.print("Enter car ID to remove: ");
+                    String carID = sc.next();
+                    if (carList.removeCar(carID)) {
+                        System.out.println("Car removed successfully.");
+                    };
                     break;
                 case 10:
                     updateCar(carList);
                     break;
                 case 11:
-                    carList.saveToFile("cars.txt");
-                    System.out.println("Cars saved to cars.txt");
+                    carList.saveToFile("Cars.txt");
+                    System.out.println("Cars saved to Cars.txt");
                     break;
-                case 12:
-                    break;
+                
                     
             }
            

@@ -27,12 +27,14 @@ public boolean loadFromFile(String filename){
                    if (line.length()>0){
                         StringTokenizer stk = new StringTokenizer (line, ",");
                         String carID = stk.nextToken().trim();
-                        
+                         String brandID = stk.nextToken().trim();
                         String color = stk.nextToken().trim();
+                      
                         String frameID = stk.nextToken().trim();
                         String engineID = stk.nextToken().trim();
                        
-                        Brand brand = brandList.get(modCount);
+                       
+                        Brand brand = new Brand(brandID);
                         
                         Car c = new Car (carID, brand, color, frameID, engineID);
                         this.add(c);
@@ -48,8 +50,9 @@ public boolean loadFromFile(String filename){
 }
 
  public boolean saveToFile(String filename) {
-        try (FileWriter fw = new FileWriter(filename);
-             PrintWriter pw = new PrintWriter(fw)) {
+        try (
+            FileWriter fw = new FileWriter(filename);
+            PrintWriter pw = new PrintWriter(fw)) {
             for (Car car : this) pw.println(car);
                pw.close();
                fw.close();
@@ -92,7 +95,7 @@ public int searchEngine(String engineID) {
         Scanner scanner = new Scanner(System.in);
 
         // Create a menu for choosing a brand
-        System.out.println("Choose a brand:");
+       
         Brand brand = brandList.getUserChoice();
 
         Car newCar = new Car(carID, brand, color, frameID, engineID);
@@ -109,7 +112,7 @@ public int searchEngine(String engineID) {
         }
 
         this.add(newCar);
-        System.out.println("Car added successfully!");
+        
     }
  public Car search(String carID){
           carID = Inputter.normalize(carID).toUpperCase();
@@ -131,7 +134,7 @@ public boolean checkFrameIDAndEngineIDUniqueness(String frameID, String engineID
 public void printBasedBrandName (){
       if (this.isEmpty()) System.out.println("Empty list!");
           else{
-              String name = Inputter.getNonBlankStr("Searched car name: ");
+              String name = Inputter.getNonBlankStr("Searched car name based on brand name: ");
               name= Inputter.normalize(name).toUpperCase();
               System.out.println(name);
               int count=0;
@@ -140,7 +143,7 @@ public void printBasedBrandName (){
                       System.out.println(c);
                       count++;
                   }
-              if (count>0) System.out.println("FOund: "+ count + "car(s)");
+              if (count>0) System.out.println("Found: "+ count + "car(s)");
               if (count == 0)
                   System.out.println("Not found");          }
 }

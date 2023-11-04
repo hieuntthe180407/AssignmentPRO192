@@ -26,7 +26,7 @@ public class Menu<E> {
 
     public int int_getChoice() {
         int choice = -1;
-        while (choice < 0 || choice >= options.size()) {
+        while (choice < 0 || choice > options.size()) {
             System.out.println(prompt);
             for (int i = 0; i < options.size(); i++) {
                 System.out.println(i + ": " + options.get(i));

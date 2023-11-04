@@ -90,7 +90,7 @@ public void addBrand(){
           int price;
           boolean duplicated=false;
           String msg="Input ID: ";
-          String regEx= "[bB][\\d]{2}-";
+          String regEx= "[bB][\\d]{4}";
           do{
               brandID = Inputter.getPatternStr(msg, regEx);
               brandID = brandID.toUpperCase();
@@ -104,7 +104,7 @@ public void addBrand(){
          
           Brand newP = new Brand(brandID, brandName, soundBrand, price);
           this.add (newP);
-          System.out.println("Added.");
+          System.out.println("Brand added.");
     }
     
 
