@@ -76,22 +76,35 @@ public void searchID() {
 
 
 public Brand getUserChoice(){
-    
+    Menu<Brand> menu = new Menu<>();
+        menu.setPrompt("Choose a brand:");
+
+        for (Brand brand : this) {
+            menu.addOption(brand.getBrandName(), brand);
+        }
+
+        return menu.ref_getChoice();
 }
 public void addBrand(){
-    String ID = null, brandName, soundBrand;
-        double price;
-        boolean duplicated = false;
-        do{
-            duplicated = (search(ID) != null);
-            if(duplicated) System.out.println("ID is duplicated");
-        } while(duplicated);
-        brandName = Inputter.getNonBlankStr("Input brand name: ");
-        soundBrand = Inputter.getNonBlankStr("Input sound brand: ");
-        price = Inputter.getIntGreater("Input product price: ", 0);
-        Brand newB = new Brand(ID, brandName, soundBrand, price);
-        this.add(newB);
-        System.out.println("Added");
+    String brandID, brandName, soundBrand;
+          int price;
+          boolean duplicated=false;
+          String msg="Input ID: ";
+          String regEx= "[bB][\\d]{2}-";
+          do{
+              brandID = Inputter.getPatternStr(msg, regEx);
+              brandID = brandID.toUpperCase();
+              duplicated= (search(brandID) !=null);
+              if(duplicated) System.out.println("ID is duplicated");
+          }
+          while (duplicated);
+          brandName= Inputter.getNonBlankStr("Input  brandName: ");
+          soundBrand= Inputter.getNonBlankStr("Input soundBrand: ");
+          price = Inputter.getIntGreater("Input price", 0);
+         
+          Brand newP = new Brand(brandID, brandName, soundBrand, price);
+          this.add (newP);
+          System.out.println("Added.");
     }
     
 

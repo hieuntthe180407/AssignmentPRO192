@@ -87,43 +87,46 @@ public int searchEngine(String engineID) {
     return -1;
 }
 
-public void addCar(){
-    String carID = "Input carID: ", color, frameID, engineID;
-        Brand br = (Brand)Menu.ref_getChoice(brandList);
-        boolean duplicated;
-        boolean duplicated1;
-        boolean duplicated2;
-        String msg1 = "Input frameID F0000: ";
-        String msg2 = "Input engineID E0000: ";
-        String regEx1 = "F\\d{4}";
-        String regEx2 = "E\\d{4}";
-        do{
-            duplicated = (searchcarID(carID) != null);
-            if(duplicated) System.out.println("carID is duplicated");
-        }while(duplicated);
-        do{
-            frameID = Inputter.getPatternStr(msg1, regEx1);
-            duplicated1 = (searchFrame(frameID) != null);
-            if(duplicated1&&!frameID.matches("F\\d{4}")) System.out.println("frameID is duplicated");
-        }while(duplicated1);
-        do{
-            engineID = Inputter.getPatternStr(msg2, regEx2);            
-            duplicated2 = (searchEngine(engineID) != null);           
-            if(duplicated2&&!engineID.matches("E\\d{4}")) System.out.println("engineID is duplicated");
-        }while(duplicated2);
-        color = Inputter.getNonBlankStr("Input color: ");
-        Car newC = new Car(carID, br, color, frameID, engineID);
-        this.add(newC);
-        System.out.println("Added");
-    }
 
+ public void addCar(String carID, String color, String frameID, String engineID) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Create a menu for choosing a brand
+        System.out.println("Choose a brand:");
+        Brand brand = brandList.getUserChoice();
+
+        Car newCar = new Car(carID, brand, color, frameID, engineID);
+
+        if (this.contains(newCar)) {
+            System.out.println("Car ID must be unique and not duplicated.");
+            return;
+        }
+
+        // Check for frameID and engineID uniqueness
+        if (checkFrameIDAndEngineIDUniqueness(frameID, engineID)) {
+            System.out.println("Frame ID and Engine ID must be unique and in the format 'Fxxxx' and 'Exxxx'.");
+           return;
+        }
+
+        this.add(newCar);
+        System.out.println("Car added successfully!");
+    }
+ public Car search(String carID){
+          carID = Inputter.normalize(carID).toUpperCase();
+          for (Car c:this)
+               if (c.carID.equals(carID)) return c;
+          return null;
+      }
+public boolean checkFrameIDAndEngineIDUniqueness(String frameID, String engineID) {
+        for (Car car : this) {
+            if (car.getFrameID().equals(frameID) && car.getEngineID().equals(engineID)) {
+                return true;
+            }
+        }
+        return false;
+    }
     
-
-    private Object searchcarID(String carID) {
-        return carID;
-    }
-
-   
+    
 
 public void printBasedBrandName (){
       if (this.isEmpty()) System.out.println("Empty list!");

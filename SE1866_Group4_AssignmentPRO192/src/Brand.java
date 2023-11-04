@@ -14,6 +14,11 @@ double price;
         this.price = price;
     }
 
+    public Brand(String brandID) {
+        this.brandID = brandID;
+    }
+    
+
     public String getBrandID() {
         return brandID;
     }
