@@ -88,16 +88,9 @@ public Brand getUserChoice(){
 public void addBrand(){
     String brandID, brandName, soundBrand;
           int price;
-          boolean duplicated=false;
-          String msg="Input ID: ";
-          String regEx= "[bB][\\d]{4}";
-          do{
-              brandID = Inputter.getPatternStr(msg, regEx);
-              brandID = brandID.toUpperCase();
-              duplicated= (search(brandID) !=null);
-              if(duplicated) System.out.println("ID is duplicated");
-          }
-          while (duplicated);
+          
+        
+          brandID= Inputter.getNonBlankStr("Input  brandID: ");
           brandName= Inputter.getNonBlankStr("Input  brandName: ");
           soundBrand= Inputter.getNonBlankStr("Input soundBrand: ");
           price = Inputter.getIntGreater("Input price", 0);
