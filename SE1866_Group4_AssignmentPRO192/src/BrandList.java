@@ -3,7 +3,9 @@ import java.lang.*;
 import java.io.*;
 
 public class BrandList extends ArrayList<Brand>{
-       
+       Scanner scanner = new Scanner(System.in);
+        String brandID, brandName, soundBrand;
+        private double price;
        
 public BrandList() {
     super();
@@ -11,6 +13,7 @@ public BrandList() {
     
      
 public boolean loadFromFile(String filename){
+    
         
         File f = new File(filename);
            if (!f.exists()) return false;
@@ -74,6 +77,15 @@ public void searchID() {
         
 }
 
+ public int searchId (String bID) {
+        for (int i = 0; i < this.size(); i++) {
+            if (bID.equals(this.get(i).getBrandID())) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
 
 public Brand getUserChoice(){
     Menu<Brand> menu = new Menu<>();
@@ -86,7 +98,7 @@ public Brand getUserChoice(){
         return menu.ref_getChoice();
 }
 public void addBrand(){
-    String brandID, brandName, soundBrand;
+   
           int price;
           
         
@@ -103,9 +115,51 @@ public void addBrand(){
 
 
 
-public void updateBrand(){
-    
-}
+ public void updateBrand () {
+        do {
+            
+            int pos;
+            
+            System.out.print("Input brand ID: ");
+            brandID = scanner.nextLine();
+            pos = searchId (brandID);
+            if (pos != -1) {
+                break;
+            }
+            System.out.println("Not found !");
+        } while (true);
+        do {
+            System.out.print("Input brand name: ");
+            brandName = scanner.nextLine();
+            if (brandName.equals("") != true) {
+                break;
+            }
+            System.out.println("The brand name must not be null. Try again !");
+        } while (true);
+        do {
+            System.out.print("Input sound brand: ");
+            soundBrand = scanner.nextLine();
+            if (soundBrand.equals("") != true) {
+                break;
+            }
+            System.out.println("The sound brand must not be null. Try again !");
+        } while (true);
+        do {
+            System.out.print("Input price: ");
+            try {
+                price = Double.parseDouble(scanner.nextLine());
+                if (price <= 0) {
+                    System.out.println("The price must not be null. Try again !");
+                    price = 0;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("The price must be a number. Try again !");
+                price = 0;
+            }
+        } while (price == 0);
+        this.get(0).setUpdatedBrand(brandName, soundBrand, price);
+        System.out.println("Brand has updated successfully !");
+ }
 public void listBrands(){
     
        
@@ -113,7 +167,7 @@ public void listBrands(){
           else{
               
               System.out.println("\nBrand list:");
-              for (Brand b:this) System.out.println(b);
+              for(Brand b:this) System.out.println(b);
           }
         
       
