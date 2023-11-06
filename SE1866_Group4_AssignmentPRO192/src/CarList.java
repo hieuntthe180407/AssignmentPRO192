@@ -2,11 +2,15 @@ import java.util.*;
 import java.lang.*;
 import java.io.*;
 public class CarList extends ArrayList<Car> {
-    private BrandList brandList;
-
+    private String color, engineID;
+    private Brand brand;
+    Menu menu = new Menu();
+    Scanner scanner = new Scanner (System.in);
+    BrandList brandList;
     public CarList() {
         super ();
     }
+    
     
     public CarList(BrandList brandList) {
         this.brandList = brandList;
@@ -89,6 +93,15 @@ public int searchEngine(String engineID) {
     }
     return -1;
 }
+ private int searchEngineID(String searchEngineID) {
+        for (int i = 0; i < this.size(); i++) {
+            if (searchEngineID.equals(this.get(i).getEngineID())) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
 
 
  public void addCar(String carID, String color, String frameID, String engineID) {
@@ -120,6 +133,14 @@ public int searchEngine(String engineID) {
                if (c.carID.equals(carID)) return c;
           return null;
       }
+   private int searchFrameID(String searchFrameID) {
+        for (int i = 0; i < this.size(); i++) {
+            if (searchFrameID.equals(this.get(i).getFrameID())) {
+                return i;
+            }
+        }
+        return -1;
+    }
 public boolean checkFrameIDAndEngineIDUniqueness(String frameID, String engineID) {
         for (Car car : this) {
             if (car.getFrameID().equals(frameID) && car.getEngineID().equals(engineID)) {
@@ -159,9 +180,47 @@ public boolean removeCar(String removedID) {
     }
 }
 
-public boolean updateCar(){
-    
-}
+ public boolean updateCar () {
+        String frameID;
+        int pos;
+        String updatedID;
+        System.out.print("Input car ID to updated: ");
+        updatedID = scanner.nextLine();
+        pos = searchID(updatedID);
+        if (pos >= 0) {
+            Brand brand = menu.ref_getChoice(brandList);
+            
+            do {
+                System.out.print("Input color: ");
+                color = scanner.nextLine();
+                if (color.equals("") != true) {
+                    break;
+                }
+                System.out.println("The color must not be null. Try again !");
+            } while (true);
+            do {
+                System.out.print("Input frame ID: ");
+                frameID = scanner.nextLine();
+                if ((frameID.matches("F[0-9][0-9][0-9][0-9]")) && (searchFrameID(frameID) == -1)) {
+                    break;
+                }
+                System.out.println("The frame ID must be in F0000 format and not be duplicated. Try again !");
+            } while (true);
+            do {
+                System.out.print("Input engine ID: ");
+                engineID = scanner.nextLine();
+                if ((engineID.matches("E[0-9][0-9][0-9][0-9]")) && (searchEngineID(engineID) == -1)) {
+                    break;
+                }
+                System.out.println("The engine ID must be in E0000 format and not be duplicated. Try again !");
+            } while (true);
+            this.get(pos).setUpdatedCar (brand, color, frameID, engineID);
+            return true;
+        } else {
+            System.out.println("Car ID not existed !");
+        }
+        return false;
+    }
 
 public void listCars(){
         
