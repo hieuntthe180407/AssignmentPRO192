@@ -26,6 +26,12 @@ double price;
     public void setBrandID(String brandID) {
         this.brandID = brandID;
     }
+    
+        public void setUpdatedBrand (String brandName, String soundBrand, double price) {
+        this.brandName = brandName;
+        this.soundBrand = soundBrand;
+        this.price = price;
+    }
 
     public String getBrandName() {
         return brandName;
