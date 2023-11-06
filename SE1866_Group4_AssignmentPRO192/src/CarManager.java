@@ -40,7 +40,7 @@ public class CarManager {
         for (String op : ops) {
             menu.addOption(op, ops.indexOf(op) + 1);
         }
-            
+             boolean checkSuccessful; 
         do {
             
             choice = menu.int_getChoice();
@@ -77,8 +77,13 @@ public class CarManager {
                         System.out.println("Car removed successfully.");
                     };
                     break;
-                case 10:
-                    updateCar(carList);
+               case 10:
+                    checkSuccessful = carList.updateCar();
+                    if (checkSuccessful) {
+                        System.out.println("Car updated successfully !");
+                    } else {
+                        System.out.println("Car updated unsuccessfully !");
+                    }
                     break;
                 case 11:
                     carList.saveToFile("Cars.txt");
